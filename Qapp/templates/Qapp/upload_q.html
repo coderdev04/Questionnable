@@ -1,0 +1,6 @@
+<form action="" enctype="multipart/form-data" method="POST">
+	{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="upload">
+    <div style="display:{{ disp }};color:red">*invalid input</div>
+</form>

@@ -1,0 +1,27 @@
+<h1 style="color:{{ acc_color }}">Hello {{ name }}</h1><p style="color:grey">{{ at_symbol }}{{ username }}</p>
+<a href="/Qapp/get_premium">get premium</a> <br>
+<a href="/Qapp/delete_account/">Delete my account</a> <br>
+<a href="/Qapp/logout/">logout</a>
+<br>
+<a href="/Qapp/upload_question/">Upload a question</a>
+<br>
+<br>
+<h1>FEED</h1>
+{% for x in feed %}
+	<div style="border:2px solid black;margin:30px;">
+		<h1><b>{{ x.Qtitle }}</b></h1><br>
+		{% if x.is_img1 %}
+			<img src="{{ x.get_img1 }}" height="400" width="400"><br>
+		{% endif %}<br>
+		{% if x.is_img2 %}
+			<img src="{{ x.get_img2 }}" height="400" width="400"><br>
+		{% endif %}<br>
+		{% if x.is_img3 %}
+			<img src="{{ x.get_img3 }}" height="400" width="400"><br>
+		{% endif %}<br>
+		{% if x.is_img4 %}
+			<img src="{{ x.get_img4 }}" height="400" width="400"><br>
+		{% endif %}<br>
+		<p style="color:grey">{{ x.Qdesc }}</p>asked by: <b>{{ x.asker }}</b>
+	</div>
+{% endfor %}

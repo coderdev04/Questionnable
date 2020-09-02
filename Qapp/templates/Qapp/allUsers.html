@@ -1,0 +1,11 @@
+<table>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+    <tr><th>Name</th><th>Username</th></tr>
+    {% for x in all_users %}
+<tr><td style="color:{{ x.acc_color }}">{{ x.name }}</td><td><a href="{{ x.username }}/">{{ x.username }}</a></td></tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,8 @@
+<h1>Login!</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="/Qapp/home/"><input type="submit" value="submit"></a>
+    <div style="color:red;display:{{ disp }}">*Incorrect Username or Password!</div>
+</form>
+<p>Don't have an account? </p><a href="/Qapp/signin/">SignUp</a>
