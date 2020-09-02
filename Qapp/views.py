@@ -199,3 +199,16 @@ def all_questions(request):
         'feed':q
     }
     return render(request,'Qapp/all_questions.html',context)
+
+
+#------------SINGLE QUESTION VIEW--------------------
+def question_view(request,qID):
+    q=question.objects.get(id=qID)
+    context={
+        'ques':q
+    }
+    #HERE
+
+#------------ADD ANSWER------------------------------
+def add_answer(request,qID):
+

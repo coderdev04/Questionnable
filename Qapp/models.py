@@ -95,10 +95,15 @@ class question(models.Model):
 
 class answer(models.Model):
     Adesc=models.CharField(max_length=500)
-    img1=models.ImageField(upload_to="images/")
-    img2=models.ImageField(upload_to="images/")
-    img3=models.ImageField(upload_to="images/")
-    img4=models.ImageField(upload_to="images/")
-    ques=models.ForeignKey(question,on_delete=models.CASCADE)
+    img1=models.ImageField(upload_to="images/",null=True,blank=True)
+    img2=models.ImageField(upload_to="images/",null=True,blank=True)
+    img3=models.ImageField(upload_to="images/",null=True,blank=True)
+    img4=models.ImageField(upload_to="images/",null=True,blank=True)
+    ques=models.ForeignKey(question,on_delete=models.CASCADE,null=True,blank=True)
+    answered_by=models.ForeignKey(accounts,on_delete=models.CASCADE,null=True,blank=True)
     
+    def __str__(self):
+        return 'Question:'+self.ques.Qtitle+' , answer:'+self.Adesc+' , By:'+self.answered_by.username+'\n'
 
+    def answerer(self):
+        return self.answered_by.username
