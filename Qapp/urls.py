@@ -11,7 +11,9 @@ urlpatterns=[
     path('delete_account/',views.delete_account,name="delete_account"),
 	path('',views.qapp_index,name='qapp_index'),
     path('get_premium/',views.get_premium,name="get_premium"),
-    path('upload_question/',views.upload_question,name="upload_question")
+    path('upload_question/',views.upload_question,name="upload_question"),
+    path('user/all_users/<username>/questions/',views.questions_by_user,name="questions_by_user"),
+    path('questions/',views.all_questions,name="all_questions"),
 ]
 
 

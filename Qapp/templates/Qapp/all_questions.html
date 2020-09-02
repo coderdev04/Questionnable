@@ -1,12 +1,4 @@
-<h1 style="color:{{ acc_color }}">Hello {{ name }}</h1><p style="color:grey">{{ at_symbol }}{{ username }}</p>
-<a href="/Qapp/get_premium">get premium</a> <br>
-<a href="/Qapp/delete_account/">Delete my account</a> <br>
-<a href="/Qapp/logout/">logout</a>
-<br>
-<a href="/Qapp/upload_question/">Upload a question</a>
-<br>
-<br>
-<h1>FEED</h1>
+<h1>ALL QUESTIONS</h1>
 {% for x in feed %}
 	<div style="border:2px solid black;margin:30px;">
 		<h1><b>{{ x.Qtitle }}</b></h1><br>
@@ -24,5 +16,4 @@
 		{% endif %}
 		<p style="color:grey">{{ x.Qdesc }}</p>asked by: <b><a href="/Qapp/user/all_users/{{ x.asker }}">{{ x.asker }}</a></b>
 	</div>
-{% endfor %}<br>
-<a href="/Qapp/questions">See all questions!</a>
+{% endfor %}

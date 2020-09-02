@@ -16,7 +16,7 @@ def server_index(request):
 def qapp_index(request):
 	return render(request,'Qapp/Qapp_index.html')
 
-
+ 
 
 #----------HOME--------------------
 def home(request):
@@ -24,7 +24,7 @@ def home(request):
         a=accounts.objects.get(username=request.COOKIES['username'])
         qtemp=question.objects.all()
         if(len(qtemp)>=10):
-            q=qtemp[-1:0:-1]
+            q=qtemp[-1:-10:-1]
         else:
             q=qtemp[::-1]
         #try:
@@ -179,3 +179,23 @@ def upload_question(request):
     }
     return render(request,"Qapp/upload_q.html",context)
 
+
+#---------------QUESTIONS BY USER--------------------
+def questions_by_user(request,username):
+    a=accounts.objects.get(username=username)
+    q=question.objects.all().filter(asked_by=a)
+    context={
+        'account':a,
+        'feed':q,
+        'at_symbol':'@'
+    }
+    return render(request,'Qapp/userQ.html',context)
+
+
+#--------------ALL QUESTIONS-------------------------
+def all_questions(request):
+    q=question.objects.all()
+    context={
+        'feed':q
+    }
+    return render(request,'Qapp/all_questions.html',context)
