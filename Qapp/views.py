@@ -204,6 +204,7 @@ def all_questions(request):
 #------------SINGLE QUESTION VIEW--------------------
 def question_view(request,qID):
     q=question.objects.get(id=qID)
+    #HERE
     context={
         'ques':q
     }
@@ -227,8 +228,8 @@ def add_answer(request,qID):
     context={
         'form':form
     }
-    return render(request,"Qapp/answer",context)
-    #HERE
+    return render(request,"Qapp/answer.html",context)
+
 
 
 
