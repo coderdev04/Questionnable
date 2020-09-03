@@ -17,3 +17,8 @@ class question_form(forms.ModelForm):
     class Meta:
         model=question
         fields=['Qtitle','Qdesc','img1','img2','img3','img4']
+
+class answer_form(forms.ModelForm):
+	class Meta:
+		model=answer
+		fields=['Adesc','img1','img2','img3','img4']

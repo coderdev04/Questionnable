@@ -101,9 +101,10 @@ class answer(models.Model):
     img4=models.ImageField(upload_to="images/",null=True,blank=True)
     ques=models.ForeignKey(question,on_delete=models.CASCADE,null=True,blank=True)
     answered_by=models.ForeignKey(accounts,on_delete=models.CASCADE,null=True,blank=True)
+
+    def answerer(self):
+        return self.answered_by.username
     
     def __str__(self):
         return 'Question:'+self.ques.Qtitle+' , answer:'+self.Adesc+' , By:'+self.answered_by.username+'\n'
 
-    def answerer(self):
-        return self.answered_by.username

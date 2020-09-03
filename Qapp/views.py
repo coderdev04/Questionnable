@@ -207,8 +207,28 @@ def question_view(request,qID):
     context={
         'ques':q
     }
-    #HERE
+    
 
 #------------ADD ANSWER------------------------------
 def add_answer(request,qID):
+    q=question.objects.get(id=qID)
+    if request.method=="POST":
+        form=answer_form(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            ans=answer.objects.last()
+            ans.ques=q
+            ans.answered_by=accounts.objects.get(username=request.COOKIES['username']).username
+            ans.save()
+            qUrl="/Qapp/question/"+qID+"/"
+            return redirect(qUrl)
+    else:
+        form=answer_form()
+    context={
+        'form':form
+    }
+    return render(request,"Qapp/answer",context)
+    #HERE
+
+
 
