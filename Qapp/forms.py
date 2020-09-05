@@ -4,11 +4,11 @@ from .models import question,answer
 class signin_form(forms.Form):
     name=forms.CharField(label="name",max_length=40)
     username=forms.CharField(label="username",max_length=40)
-    password=forms.CharField(label="password",max_length=40)
+    password=forms.CharField(label="password",max_length=40,widgit=forms.passwordFieldInput)
 
 class login_form(forms.Form):
     username=forms.CharField(label="username",max_length=40)
-    password=forms.CharField(label="password",max_length=40)
+    password=forms.CharField(label="password",max_length=40,widgit=forms.passwordFieldInput)
 
 class search_by_username(forms.Form):
     username=forms.CharField(label="search by username:",max_length=40)
