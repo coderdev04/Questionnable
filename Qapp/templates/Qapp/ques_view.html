@@ -1,0 +1,35 @@
+<div style="border:2px solid black;margin:30px;">
+		<h1><b>{{ ques.Qtitle }}</b></h1><br>
+		{% if ques.is_img1 %}
+			<img src="{{ ques.get_img1 }}" height="400" width="400"><br>
+		{% endif %}
+		{% if ques.is_img2 %}
+			<img src="{{ ques.get_img2 }}" height="400" width="400"><br>
+		{% endif %}
+		{% if ques.is_img3 %}
+			<img src="{{ ques.get_img3 }}" height="400" width="400"><br>
+		{% endif %}
+		{% if ques.is_img4 %}
+			<img src="{{ ques.get_img4 }}" height="400" width="400"><br>
+		{% endif %}
+		<p style="color:grey">{{ ques.Qdesc }}</p>asked by: <b><a href="/Qapp/user/all_users/{{ ques.asker }}">{{ ques.asker }}</a></b>
+		<div><a href="add_answer/" style="height:20px;width: 50px; background: teal; border-radius:2px;color:black;margin:20px;">Add answer!</a></div>
+</div>
+		{% for x in ans %}
+			<div style="border:1px solid green;margin:10px">
+				<h1>{{ x.Adesc }}</h1>
+				{% if x.is_img1 %}
+					<img src="{{ x.get_img1 }}" height="400" width="400"><br>
+				{% endif %}
+				{% if x.is_img2 %}
+					<img src="{{ x.get_img2 }}" height="400" width="400"><br>
+				{% endif %}
+				{% if x.is_img3 %}
+					<img src="{{ x.get_img3 }}" height="400" width="400"><br>
+				{% endif %}
+				{% if x.is_img4 %}
+					<img src="{{ x.get_img4 }}" height="400" width="400"><br>
+				{% endif %}
+				<b>answered by </b><a href="Qapp/user/all_users/{{x.answerer}}/">{{x.answerer}}</a>
+			</div>
+		{% endfor %}

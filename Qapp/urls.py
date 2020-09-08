@@ -14,6 +14,8 @@ urlpatterns=[
     path('upload_question/',views.upload_question,name="upload_question"),
     path('user/all_users/<username>/questions/',views.questions_by_user,name="questions_by_user"),
     path('questions/',views.all_questions,name="all_questions"),
+    path('question/<qID>/',views.question_view,name="question_view"),
+    path('question/<qID>/add_answer/',views.add_answer,name="add_answer"),
 ]
 
 

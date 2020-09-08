@@ -22,6 +22,7 @@
 		{% if x.is_img4 %}
 			<img src="{{ x.get_img4 }}" height="400" width="400"><br>
 		{% endif %}
+		<a href="/Qapp/question/{{x.id}}/">see answers ({{ x.num_of_ans }})</a>
 		<p style="color:grey">{{ x.Qdesc }}</p>asked by: <b><a href="/Qapp/user/all_users/{{ x.asker }}">{{ x.asker }}</a></b>
 	</div>
 {% endfor %}<br>

@@ -32,6 +32,10 @@ class question(models.Model):
 
 
 #--------------------------------------------------
+    def num_of_ans(self):
+        a=answer.objects.all().filter(ques=self)
+        return len(a)
+
     def asker(self):
         return self.asked_by.username
 
@@ -90,7 +94,7 @@ class question(models.Model):
     #        asker=self.asked_by.username
     #    except:
     #        asker=""
-        return "title : "+self.Qtitle+", description : "+desc+", asked_by : "+self.asker()+"\n"
+        return "id : "+str(self.id)+", title : "+self.Qtitle+", description : "+desc+", asked_by : "+self.asker()+"\n"
 
 
 class answer(models.Model):
@@ -102,9 +106,56 @@ class answer(models.Model):
     ques=models.ForeignKey(question,on_delete=models.CASCADE,null=True,blank=True)
     answered_by=models.ForeignKey(accounts,on_delete=models.CASCADE,null=True,blank=True)
 
+    def get_img1(self):
+        try:
+            return str(self.img1.url)
+        except:
+            return ""
+    def is_img1(self):
+        try:
+            a=self.img1.url
+            return True
+        except:
+            return False
+
+    def get_img2(self):
+        try:
+            return str(self.img2.url)
+        except:
+            return ""
+    def is_img2(self):
+        try:
+            a=self.img2.url
+            return True
+        except:
+            return False
+    def get_img3(self):
+        try:
+            return str(self.img3.url)
+        except:
+            return ""
+    def is_img3(self):
+        try:
+            a=self.img3.url
+            return True
+        except:
+            return False
+    def get_img4(self):
+        try:
+            return str(self.img4.url)
+        except:
+            return ""
+    def is_img4(self):
+        try:
+            a=self.img4.url
+            return True
+        except:
+            return False
+
     def answerer(self):
         return self.answered_by.username
+    def question_to_answer(self):
+        return self.ques.Qtitle
     
     def __str__(self):
-        return 'Question:'+self.ques.Qtitle+' , answer:'+self.Adesc+' , By:'+self.answered_by.username+'\n'
-
+        return 'Question : '+self.question_to_answer()+' , answer : '+self.Adesc+' , By : '+self.answerer()+'\n' 

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 import requests
 from django.template import Template,loader
 from .models import accounts,question,answer
-from .forms import signin_form,login_form,search_by_username,question_form
+from .forms import signin_form,login_form,search_by_username,question_form,answer_form
 from django import forms
 
 
@@ -204,10 +204,13 @@ def all_questions(request):
 #------------SINGLE QUESTION VIEW--------------------
 def question_view(request,qID):
     q=question.objects.get(id=qID)
+    a=answer.objects.all().filter(ques=q)
     #HERE
     context={
-        'ques':q
+        'ques':q,
+        'ans':a
     }
+    return render(request,"Qapp/ques_view.html",context)
     
 
 #------------ADD ANSWER------------------------------
@@ -218,8 +221,9 @@ def add_answer(request,qID):
         if form.is_valid():
             form.save()
             ans=answer.objects.last()
+            q=question.objects.get(id=qID)
             ans.ques=q
-            ans.answered_by=accounts.objects.get(username=request.COOKIES['username']).username
+            ans.answered_by=accounts.objects.get(username=request.COOKIES['username'])
             ans.save()
             qUrl="/Qapp/question/"+qID+"/"
             return redirect(qUrl)
