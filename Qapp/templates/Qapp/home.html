@@ -9,8 +9,8 @@
 <h1>FEED</h1>
 {% for x in feed %}
 	<div style="border:2px solid black;margin:30px;">
-		<h1><b>{{ x.Qtitle }}</b></h1><br>
-		{% if x.is_img1 %}
+		<h1><b>{{ x.Qtitle }}</b></h1><div style="color:grey">{{ x.asked_on }}</div><br>
+	<!--	{% if x.is_img1 %}
 			<img src="{{ x.get_img1 }}" height="400" width="400"><br>
 		{% endif %}
 		{% if x.is_img2 %}
@@ -21,9 +21,9 @@
 		{% endif %}
 		{% if x.is_img4 %}
 			<img src="{{ x.get_img4 }}" height="400" width="400"><br>
-		{% endif %}
+		{% endif %}		-->
+		<p style="color:grey">{{ x.Qdesc }}</p>asked by: <b><a href="/Qapp/user/all_users/{{ x.asker }}/">{{ x.asker }}</a></b><br><br>
 		<a href="/Qapp/question/{{x.id}}/">see answers ({{ x.num_of_ans }})</a>
-		<p style="color:grey">{{ x.Qdesc }}</p>asked by: <b><a href="/Qapp/user/all_users/{{ x.asker }}">{{ x.asker }}</a></b>
 	</div>
 {% endfor %}<br>
 <a href="/Qapp/questions">See all questions!</a>

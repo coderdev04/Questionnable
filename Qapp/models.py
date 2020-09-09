@@ -1,6 +1,7 @@
 from django.db import models
 from PIL import Image
 from django.shortcuts import render
+from datetime import datetime
 
 class accounts(models.Model):
     name=models.CharField(max_length=40,null=False)
@@ -29,6 +30,7 @@ class question(models.Model):
     img3=models.ImageField(upload_to="images/",blank=True)
     img4=models.ImageField(upload_to="images/",blank=True)
     asked_by=models.ForeignKey(accounts,on_delete=models.CASCADE,blank=True,null=True)
+    asked_on=models.DateTimeField(default=datetime.now)
 
 
 #--------------------------------------------------
@@ -94,7 +96,7 @@ class question(models.Model):
     #        asker=self.asked_by.username
     #    except:
     #        asker=""
-        return "id : "+str(self.id)+", title : "+self.Qtitle+", description : "+desc+", asked_by : "+self.asker()+"\n"
+        return "id : "+str(self.id)+", title : "+self.Qtitle+", description : "+desc+", asked_by : "+self.asker()+", On : "+str(self.asked_on)+"\n"
 
 
 class answer(models.Model):
@@ -105,6 +107,7 @@ class answer(models.Model):
     img4=models.ImageField(upload_to="images/",null=True,blank=True)
     ques=models.ForeignKey(question,on_delete=models.CASCADE,null=True,blank=True)
     answered_by=models.ForeignKey(accounts,on_delete=models.CASCADE,null=True,blank=True)
+    answered_on=models.DateTimeField(default=datetime.now)
 
     def get_img1(self):
         try:
@@ -158,4 +161,4 @@ class answer(models.Model):
         return self.ques.Qtitle
     
     def __str__(self):
-        return 'Question : '+self.question_to_answer()+' , answer : '+self.Adesc+' , By : '+self.answerer()+'\n' 
+        return 'Question : '+self.question_to_answer()+' , answer : '+self.Adesc+' , By : '+self.answerer()+", On : "+str(self.answered_on)+"\n" 

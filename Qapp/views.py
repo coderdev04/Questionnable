@@ -71,11 +71,14 @@ def signin(request):
 def user(request,user_name):
     try:
         a=accounts.objects.get(username=user_name)
+        q=question.objects.all().filter(asked_by=a)
         context= {
             'uname':a.username,
             'name':a.name,
             'at_symbol':'@',
-            'acc_color':a.acc_color
+            'acc_color':a.acc_color,
+            'account':a,
+            'feed':q
         }
     except:
         return redirect("Qapp/user/all_users")

@@ -1,7 +1,7 @@
 <h1>ALL QUESTIONS</h1>
 {% for x in feed %}
 	<div style="border:2px solid black;margin:30px;">
-		<h1><b>{{ x.Qtitle }}</b></h1><br>
+		<h1><b>{{ x.Qtitle }}</b></h1><div style="color:grey">{{ x.asked_on }}</div><br>
 		{% if x.is_img1 %}
 			<img src="{{ x.get_img1 }}" height="400" width="400"><br>
 		{% endif %}
