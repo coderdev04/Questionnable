@@ -5,18 +5,19 @@ from django.template import Template,loader
 from .models import accounts,question,answer
 from .forms import signin_form,login_form,search_by_username,question_form,answer_form
 from django import forms
+from django.forms.models import model_to_dict
 
 
 #----------SERVER INDEX-------------------
 def server_index(request):
 	return redirect('/Qapp/')
-	
-	
+
+
 #----------QAPP INDEX---------------------
 def qapp_index(request):
 	return render(request,'Qapp/Qapp_index.html')
 
- 
+
 
 #----------HOME--------------------
 def home(request):
@@ -172,7 +173,7 @@ def upload_question(request):
             except:
                 disp_coefficient="block"
             #a.asked_by=request.COOKIES['username']
-            
+
     else:
         form=question_form()
         disp_coefficient="none"
@@ -208,13 +209,12 @@ def all_questions(request):
 def question_view(request,qID):
     q=question.objects.get(id=qID)
     a=answer.objects.all().filter(ques=q)
-    #HERE
     context={
         'ques':q,
         'ans':a
     }
     return render(request,"Qapp/ques_view.html",context)
-    
+
 
 #------------ADD ANSWER------------------------------
 def add_answer(request,qID):
@@ -236,6 +236,31 @@ def add_answer(request,qID):
         'form':form
     }
     return render(request,"Qapp/answer.html",context)
+
+
+#-------------ABOUT US------------------------
+def abt(request):
+    return render(request,"Qapp/about_us.html")
+
+
+#-----------DELETE QUESTION--------*NOT PUBLISHED*-----------
+def del_ques(request,qID):
+    q=question.objects.get(id=qID)
+    if q.asked_by.username==request.COOKIES["username"]:
+        q.delete()
+    return redirect("/Qapp/home/")
+
+"""
+#-----------QUESTION BY TAG-------------------------
+def ques_by_tag(request,search_tag):
+    q=question.objects.all().filter(tag=search_tag)
+    context={
+        'feed':q
+        }
+    return render(request,'Qapp/ques_by_tag.html',context)
+"""
+
+
 
 
 

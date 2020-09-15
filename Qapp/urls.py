@@ -15,4 +15,5 @@ urlpatterns=[
     path('questions/',views.all_questions,name="all_questions"),
     path('question/<qID>/',views.question_view,name="question_view"),
     path('question/<qID>/add_answer/',views.add_answer,name="add_answer"),
+    path('about_us/',views.abt,name="abt"),
 ]
