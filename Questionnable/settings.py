@@ -28,7 +28,7 @@ SECRET_KEY = '8268g*#y=*v4oxiaz5l*ht)zba=++jlwlv0w(lqdua5ci%ytyj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.100','127.0.0.1','0.0.0.0','coderdev04.pythonanywhere.com']
+ALLOWED_HOSTS = ['192.168.0.100','127.0.0.1','0.0.0.0','dgsoft.pythonanywhere.com']
 
 
 # Application definition
@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'Questionnable.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'coderdev04$QappDB',
-        'USER': 'coderdev04',
+        'NAME':'dgsoft$dgsoftDB',
+        'USER': 'dgsoft',
         'PASSWORD': 'devlop678',
-        'HOST':'coderdev04.mysql.pythonanywhere-services.com',
+        'HOST':'dgsoft.mysql.pythonanywhere-services.com',
         'PORT':'3306',
     }
 }
