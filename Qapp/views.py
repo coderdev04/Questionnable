@@ -10,7 +10,11 @@ from django.forms.models import model_to_dict
 
 #----------SERVER INDEX-------------------
 def server_index(request):
-	return redirect('/Qapp/')
+    try:
+        usr=request.COOKIES['username']
+        return redirect('/Qapp/home/')
+    except:
+        return redirect('/Qapp/')
 
 
 #----------QAPP INDEX---------------------

@@ -1,3 +1,4 @@
+<!--
 <h1>Login!</h1>
 <form action="" method="POST">
     {% csrf_token %}
@@ -6,3 +7,48 @@
     <div style="color:red;display:{{ disp }}">*Incorrect Username or Password!</div>
 </form>
 <p>Don't have an account? </p><a href="/Qapp/signin/">SignUp</a>
+-->
+
+
+<!DOCTYPE html>
+<html>
+<title>DGSOFT | Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-center" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <div class="w3-container">
+    <h1><b>LOGIN</b></h1>
+    </div>
+  </header>
+
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-first w3-container w3-margin-bottom">
+      <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }} <br> <br>
+    <a href="/Qapp/home/"><input type="submit" name="login" class="w3-button w3-teal"></a>
+    <div style="color:red;display:{{ disp }}">*Incorrect Username or Password!</div>
+</form>
+<p>Don't have an account? </p><a href="/Qapp/signin/">SignUp</a>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+<!-- End page content -->
+</div>
+
+</body>
+</html>

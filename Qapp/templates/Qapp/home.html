@@ -1,3 +1,4 @@
+<!--
 <h1 style="color:{{ acc_color }}">Hello {{ name }}</h1><p style="color:grey">{{ at_symbol }}{{ username }}</p>
 <a href="/Qapp/get_premium">get premium</a> <br>
 <a href="/Qapp/delete_account/">Delete my account</a> <br>
@@ -21,9 +22,114 @@
 		{% endif %}
 		{% if x.is_img4 %}
 			<img src="{{ x.get_img4 }}" height="400" width="400"><br>
-		{% endif %}		-->
+		{% endif %}
 		<p style="color:grey">{{ x.Qdesc }}</p>asked by: <b><a href="/Qapp/user/all_users/{{ x.asker }}/">{{ x.asker }}</a></b><br><br>
 		<a href="/Qapp/question/{{x.id}}/">see answers ({{ x.num_of_ans }})</a>
 	</div>
 {% endfor %}<br>
 <a href="/Qapp/questions">See all questions!</a>
+-->
+
+<!-- -->
+<!DOCTYPE html>
+<html>
+<title>DGSOFT | Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="https://lh3.googleusercontent.com/proxy/wt-LQ1iJsceRL6rkTkg0rJFIsLWfpBEmJ519KJK46IFTNAAmRh8nfkEAw3o6AhuEwlZmjsgAit_Av8pZuD6cXCX5QJ97W-Z9pcKc1eVNJzxu-P7BT60" style="width:45%;" class="w3-round"><br><br>
+    <h4><b>Hello {{ name }}!</b></h4>
+    <p class="w3-text-grey">{{ at_symbol }}{{ username }}</p>
+  </div>
+  <div class="w3-bar-block">
+     <a href="/Qapp/home/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-rss fa-fw w3-margin-right"></i>FEED</a>
+    <a href="/Qapp/upload_question/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-question-circle fa-fw w3-margin-right"></i>Upload a question</a>
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Account</a>
+    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-info fa-fw w3-margin-right"></i>About Us</a>
+    <a href="/Qapp/logout/" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-sign-out fa-fw w3-margin-right"></i>Logout</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>FEED</b></h1>
+    </div>
+  </header>
+
+  <!-- First Photo Grid-->
+  {% for x in feed %}
+    <div class="w3-row-padding">
+        <div class="w3-first w3-container w3-margin-bottom">
+           <div class="w3-container w3-white">
+            <p style="word-wrap: break-word;"><b>{{ x.Qtitle }}</b></p>
+            <p style="color:grey">{{ x.asked_on }}</p>
+            <!--	{% if x.is_img1 %}
+			<img src="{{ x.get_img1 }}" height="400" width="400"><br>
+		    {% endif %}
+		    {% if x.is_img2 %}
+		    	<img src="{{ x.get_img2 }}" height="400" width="400"><br>
+		    {% endif %}
+		    {% if x.is_img3 %}
+		    	<img src="{{ x.get_img3 }}" height="400" width="400"><br>
+		    {% endif %}
+		    {% if x.is_img4 %}
+		    	<img src="{{ x.get_img4 }}" height="400" width="400"><br>
+		    {% endif %}		-->
+            <p style="word-wrap: break-word;">{{ x.Qdesc }}</p>
+            <div style="color:grey">Asked by <a href="/Qapp/user/all_users/{{ x.asker }}/">{{ x.asker }}</a></div>
+            <div class="w3-padding-32">
+              <div class="w3-bar">
+                <a href="/Qapp/question/{{x.id}}/" class="w3-bar-item w3-teal w3-button">See all answers({{ x.num_of_ans }})</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a href="/Qapp/questions" class="w3-bar-item w3-black w3-button">See all questions</a>
+    </div>
+  </div>
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
+
