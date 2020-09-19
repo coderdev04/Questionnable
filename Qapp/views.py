@@ -14,13 +14,13 @@ def server_index(request):
         usr=request.COOKIES['username']
         return redirect('/Qapp/home/')
     except:
-        return redirect('/Qapp/')
+        return redirect('/Qapp/login/')
 
-
+"""
 #----------QAPP INDEX---------------------
 def qapp_index(request):
 	return render(request,'Qapp/Qapp_index.html')
-
+"""
 
 
 #----------HOME--------------------
@@ -37,8 +37,7 @@ def home(request):
         #except:
         #    img_url=""
         context= {
-            'name':a.name,
-            'username':a.username,
+            'acc':a,
             'at_symbol':'@',
             'acc_color':a.acc_color,
             'feed':q
@@ -159,6 +158,7 @@ def get_premium(request):
 
 #----------UPLOAD QUESTION------------------
 def upload_question(request):
+    a=accounts.objects.get(username=request.COOKIES['username'])
     if request.method=="POST":
         form=question_form(request.POST,request.FILES)
         if form.is_valid():
@@ -168,7 +168,6 @@ def upload_question(request):
                     disp_coefficient="block"
                 except:
                     form.save()
-                    a=accounts.objects.get(username=request.COOKIES['username'])
                     q=question.objects.get(Qtitle=form.cleaned_data['Qtitle'])
                     q.asked_by=a
                     q.save()
@@ -182,6 +181,8 @@ def upload_question(request):
         form=question_form()
         disp_coefficient="none"
     context={
+        'acc':a,
+        'at_symbol':'@',
         'form':form,
         'disp':disp_coefficient
     }
@@ -203,7 +204,10 @@ def questions_by_user(request,username):
 #--------------ALL QUESTIONS-------------------------
 def all_questions(request):
     q=question.objects.all()
+    a=accounts.objects.get(username=request.COOKIES['username'])
     context={
+        'acc':a,
+        'at_symbol':'@',
         'feed':q
     }
     return render(request,'Qapp/all_questions.html',context)
@@ -212,10 +216,13 @@ def all_questions(request):
 #------------SINGLE QUESTION VIEW--------------------
 def question_view(request,qID):
     q=question.objects.get(id=qID)
-    a=answer.objects.all().filter(ques=q)
+    ans=answer.objects.all().filter(ques=q)
+    a=accounts.objects.get(username=request.COOKIES['username'])
     context={
+        'acc':a,
+        'at_symbol':'@',
         'ques':q,
-        'ans':a
+        'ans':ans
     }
     return render(request,"Qapp/ques_view.html",context)
 
@@ -223,6 +230,7 @@ def question_view(request,qID):
 #------------ADD ANSWER------------------------------
 def add_answer(request,qID):
     q=question.objects.get(id=qID)
+    a=accounts.objects.get(username=request.COOKIES['username'])
     if request.method=="POST":
         form=answer_form(request.POST,request.FILES)
         if form.is_valid():
@@ -237,6 +245,8 @@ def add_answer(request,qID):
     else:
         form=answer_form()
     context={
+        'acc':a,
+        'at_symbol':'@',
         'form':form
     }
     return render(request,"Qapp/answer.html",context)
